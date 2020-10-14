@@ -19,7 +19,7 @@ class ContinuousPhenotype(PhenotypeBase):
                  std: float = 0.05,
                  age_association=default_age_association,
                  age_repr: str = default_age_repr,
-                 health_effect=False):
+                 health_effect=True):
         PhenotypeBase.__init__(self)
         self.representation = representation
         self.mean = mean
@@ -29,7 +29,7 @@ class ContinuousPhenotype(PhenotypeBase):
         self.age_repr = age_repr
         self.health_effect = health_effect
 
-    def __repr__(self):
+    def __str__(self):
         return self.representation
 
     def get_phenotype(self, age: float, health: float) -> Tuple[int, float]:

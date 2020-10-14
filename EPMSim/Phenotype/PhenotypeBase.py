@@ -11,7 +11,7 @@ class PhenotypeBase:
         self.health_effect = None
         self.age_repr = None
 
-    def __repr__(self):
+    def __str__(self):
         return self.representation
 
     def get_phenotype(self, age: float, health: float) -> Tuple[int, float]:

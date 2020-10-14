@@ -10,11 +10,15 @@ default_age_association, default_age_repr = construct_age_association(return_rep
 
 class BinaryPhenotype(PhenotypeBase):
     """
-       :param mean:
-       :param std:
-       :param binary_prob:
-       :param age_limit:
-       :param age_association:
+    Params:
+        * *representation (str)*:
+        * *param mean (float)*:
+        * *param std (float)*:
+        * *param binary_prob (float)*:
+        * *age_limit (float)*:
+        * *age_association (EPMSim.Phenotypes.PhenotypeAgeAssociation)*:
+        * *age_repr (str)*:
+        * *health_effect (bool)*:
     """
 
     def __init__(self, representation='NA', mean: float = 1.0,
@@ -35,10 +39,19 @@ class BinaryPhenotype(PhenotypeBase):
         self.age_repr = age_repr
         self.health_effect = health_effect
 
-    def __repr__(self):
+    def __str__(self):
+        """Return user defined phenotype representation"""
         return self.representation
 
     def get_phenotype(self, age: float, health: float) -> Tuple[int, float]:
+        """Get sample phenotype information given age and health
+        Params:
+            * *age (float)*:
+            * *health (float)*:
+        Returns:
+            * *Phenotype Info (Tuple[int, float])*: 1 if sample has trait 1 else 0,
+                                                    phenotype value if sample has phenotype
+            """
         has_trait = 0
         if age > self.age_limit:
             has_trait = 1 if np.random.uniform(0.0, 1.0) > self.binary_prob else 0
