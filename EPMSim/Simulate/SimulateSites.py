@@ -32,7 +32,7 @@ class GenerateSites:
         return weights
 
     def get_site_generators(self):
-        deviations = [0.1, 0.15, 0.2]
+        deviations = [0.01, 0.025, 0.05]
         if not self.pheno_site_generators:
             for deviation in deviations:
                 self.pheno_site_generators[f'phenotype_{deviation}'] = SiteGenerator(site_deviation=deviation)

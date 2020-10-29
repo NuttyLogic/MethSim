@@ -9,6 +9,7 @@ class PhenotypeBase:
         self.mean = None
         self.std = None
         self.health_effect = None
+        self.health_dist = None
         self.age_repr = None
 
     def __str__(self):

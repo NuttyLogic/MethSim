@@ -13,4 +13,4 @@ class Sample:
     def add_phenotype(self, phenotype_name: str, phenotype_info: Dict):
         self.phenotypes[phenotype_name] = phenotype_info
         if phenotype_info['health_effect']:
-            self.epigenetic_state += phenotype_info['trait_value']
+            self.epigenetic_state += 1.0 - phenotype_info['trait_value']

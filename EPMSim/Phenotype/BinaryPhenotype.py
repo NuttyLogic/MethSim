@@ -27,7 +27,8 @@ class BinaryPhenotype(PhenotypeBase):
                  age_limit: float = 0.0,
                  age_association=default_age_association,
                  age_repr: str = default_age_repr,
-                 health_effect=True):
+                 health_effect=True,
+                 health_dist=True):
         PhenotypeBase.__init__(self)
         self.representation = representation
         self.mean = mean
@@ -37,6 +38,7 @@ class BinaryPhenotype(PhenotypeBase):
         self.age_limit = age_limit
         self.age_association = age_association
         self.age_repr = age_repr
+        self.health_dist = health_dist
         self.health_effect = health_effect
 
     def __str__(self):
@@ -55,7 +57,7 @@ class BinaryPhenotype(PhenotypeBase):
         has_trait = 0
         if age > self.age_limit:
             has_trait = 1 if np.random.uniform(0.0, 1.0) > self.binary_prob else 0
-        if self.health_effect:
+        if self.health_dist:
             phenotype = np.random.normal(loc=self.mean + health, scale=self.std) if has_trait else 0.0
         else:
             phenotype = np.random.normal(loc=self.mean, scale=self.std) if has_trait else 0.0
