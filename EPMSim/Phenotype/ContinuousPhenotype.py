@@ -39,4 +39,4 @@ class ContinuousPhenotype(PhenotypeBase):
             phenotype = np.random.normal(loc=self.mean + health, scale=self.std)
         else:
             phenotype = np.random.normal(loc=self.mean, scale=self.std)
-        return 0, self.age_association(age, phenotype)
+        return 1, self.age_association(age, phenotype)

@@ -19,6 +19,7 @@ class BinaryPhenotype(PhenotypeBase):
         * *age_association (EPMSim.Phenotypes.PhenotypeAgeAssociation)*:
         * *age_repr (str)*:
         * *health_effect (bool)*:
+        * *health_dist (bool)*:
     """
 
     def __init__(self, representation='NA', mean: float = 1.0,

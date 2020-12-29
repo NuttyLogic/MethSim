@@ -2,8 +2,7 @@
 Matrices Under an Evolutionary Framework </h1>
 
 ## About
-DNA methylation is widely used to model physiological phenotypes.
-The Epigenetic Pacemaker Simulation is a simulation framework that simulates methylation phenotype and age associated 
+DNA methylation is widely studied epigenetic mark. EPMSim is a simulation framework that simulates methylation phenotype and age associated 
 methylation matrices using teh Epigenetic Pacemaker(EPM) as a an underlying model. The EPM was first introduced by Snir et al.
 [<sup>4</sup>](https://doi.org/10.1371/journal.pcbi.1005183) as an extension of the Universal Pacemaker (UPM) model of genome evolution. 
 The software implementation of the Epigenetic Pacemaker is described in our publication [*The Epigenetic Pacemaker - modeling epigenetic states under an evolutionary framework*](https://academic.oup.com/bioinformatics/article-abstract/doi/10.1093/bioinformatics/btaa585/5861533?redirectedFrom=fulltext)<sup>6</sup>.

@@ -6,7 +6,7 @@ class PhenotypeAgeAssociation:
         """age_phenotype = (age_weight)age**(age_exp) * phenotype"""
         self.age_weight = age_weight
         self.age_exponent = age_exponent
-        self.phenotype_representation = f'$p_a = {age_weight:.2f}\\times a^{{{age_exponent: .2f}}}\\times p$'
+        self.phenotype_representation = f'$p_a = {age_weight:.2f}\\times a^{{{age_exponent:.2f}}}\\times q$'
 
     def age_association(self, age: float, phenotype: float):
         return self.age_weight * age ** self.age_exponent * phenotype
