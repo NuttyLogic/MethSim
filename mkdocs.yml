@@ -17,3 +17,4 @@ theme:
   favicon: img/lightning-bolt.pn
 nav:
     - Home: index.md
+    - Worklow: workflow.md

@@ -46,7 +46,7 @@ class BinaryPhenotype(PhenotypeBase):
         """Return user defined phenotype representation"""
         return self.representation
 
-    def get_phenotype(self, age: float, health: float) -> Tuple[int, float]:
+    def get_phenotype(self, age: float, health: float) -> Tuple[int, float, float]:
         """Get sample phenotype information given age and health
         Params:
             * *age (float)*:
@@ -59,7 +59,8 @@ class BinaryPhenotype(PhenotypeBase):
         if age > self.age_limit:
             has_trait = 1 if np.random.uniform(0.0, 1.0) > self.binary_prob else 0
         if self.health_dist:
-            phenotype = np.random.normal(loc=self.mean + health, scale=self.std) if has_trait else 0.0
+            phenotype = np.random.normal(loc=self.mean + health, scale=self.std) if has_trait else 1.0
         else:
-            phenotype = np.random.normal(loc=self.mean, scale=self.std) if has_trait else 0.0
-        return has_trait, self.age_association(age, phenotype)
+            phenotype = np.random.normal(loc=self.mean, scale=self.std) if has_trait else 1.0
+        expected_phenotype = self.mean if has_trait else 1.0
+        return has_trait, self.age_association(age, phenotype), self.age_association(age, expected_phenotype)

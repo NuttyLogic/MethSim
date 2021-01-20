@@ -1,4 +1,4 @@
-from typing import Dict
+from EPMSim.Sample import SamplePhenotype
 
 
 class Sample:
@@ -10,7 +10,7 @@ class Sample:
         self.expected_epigenetic_state = epigenetic_state(age)
         self.phenotypes = {}
 
-    def add_phenotype(self, phenotype_name: str, phenotype_info: Dict):
-        self.phenotypes[phenotype_name] = phenotype_info
-        if phenotype_info['health_effect']:
-            self.epigenetic_state += phenotype_info['trait_value'] - 1.0
+    def add_phenotype(self, phenotype: SamplePhenotype):
+        self.phenotypes[str(phenotype)] = phenotype
+        if phenotype.health_effect:
+            self.epigenetic_state += phenotype.trait_actual_expected_diff

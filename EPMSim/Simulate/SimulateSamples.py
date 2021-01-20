@@ -1,7 +1,7 @@
 from typing import Dict, List, Tuple
 import numpy as np
 from EPMSim.Phenotype.PhenotypeBase import PhenotypeBase
-from EPMSim.Sample import Sample
+from EPMSim.Sample import Sample, SamplePhenotype
 
 
 def simulate_samples(min_age: float = 0.0, max_age: float = 100.0,
@@ -17,12 +17,13 @@ def simulate_samples(min_age: float = 0.0, max_age: float = 100.0,
         if phenotypes:
             for count, phenotype in enumerate(phenotypes):
                 pheno_repr = str(phenotype) if str(phenotype) != 'NA' else str(count)
-                has_trait, trait_value = phenotype.get_phenotype(current_sample.age,
-                                                                 current_sample.health)
-                pheno_info = dict(has_trait=has_trait, trait_value=trait_value,
-                                  binary=phenotype.binary, health_effect=phenotype.health_effect,
-                                  age_repr=phenotype.age_repr, pheno_repr=str(phenotype))
-                current_sample.add_phenotype(pheno_repr, pheno_info)
+                has_trait, trait_value, expected_trait_value = phenotype.get_phenotype(current_sample.age,
+                                                                                       current_sample.health)
+                pheno_info = SamplePhenotype(has_trait=has_trait, trait_value=trait_value,
+                                             expected_trait_value=expected_trait_value,
+                                             binary=phenotype.binary, health_effect=phenotype.health_effect,
+                                             age_repr=phenotype.age_repr, pheno_repr=pheno_repr)
+                current_sample.add_phenotype(pheno_info)
     return sim_samples
 
 
