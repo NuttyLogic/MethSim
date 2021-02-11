@@ -58,7 +58,7 @@ class GenerateSites:
             sample_values = sum(np.array([sample_phenotypes[:, phenotype_key[pheno]] * self.phenotype_weights[pheno] for
                                           pheno in site['site_phenotypes']]))
             scaled_values = [x[0] for x in scaler.fit_transform(sample_values.reshape(-1, 1))]
-            values, error = self.generate_site_values(scaled_values, site)
+            values, error = self.get_site_values(scaled_values, site)
             meth_matrix.append(values)
             meth_error.append(error)
         return np.array(meth_matrix), np.array(meth_error)
@@ -77,8 +77,7 @@ class GenerateSites:
         return meth_sites
 
     @staticmethod
-    def generate_site_values(phenotype_values: np.array,
-                             site: Dict) -> Tuple[np.ndarray, np.ndarray]:
+    def get_site_values(phenotype_values: np.array, site: Dict) -> Tuple[np.ndarray, np.ndarray]:
         meth_values, meth_error = [], []
         for value in phenotype_values:
             meth, error = generate_sample_methylation(value, site['m_not'], site['rate'], site['std'])

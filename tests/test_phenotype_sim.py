@@ -23,10 +23,10 @@ def test_phenotypes():
         for _ in range(100):
             age = np.random.uniform(1, 100)
             health = np.random.uniform(-1.0, 1.0)
-            has_pheno, pheno_value = phenotype.get_phenotype(age, health)
+            has_pheno, pheno_value, expected_value = phenotype.get_phenotype(age, health)
             if has_pheno:
                 assert pheno_value == (phenotype.mean + health) * np.sqrt(age)
             else:
                 assert isinstance(phenotype, BinaryPhenotype)
-                assert pheno_value == 0.0
+                assert pheno_value == expected_value
 
