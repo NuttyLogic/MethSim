@@ -13,7 +13,7 @@ class SamplePhenotype:
         self.health_effect = health_effect
         self.age_repr = age_repr
         self.pheno_repr = pheno_repr
-        self.trait_actual_expected_diff = trait_value - expected_trait_value
+        self.trait_actual_expected_diff = trait_value / expected_trait_value
 
     def __str__(self):
         return str(self.pheno_repr)

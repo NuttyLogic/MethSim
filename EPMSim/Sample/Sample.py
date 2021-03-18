@@ -13,4 +13,4 @@ class Sample:
     def add_phenotype(self, phenotype: SamplePhenotype):
         self.phenotypes[str(phenotype)] = phenotype
         if phenotype.health_effect:
-            self.epigenetic_state += phenotype.trait_actual_expected_diff
+            self.epigenetic_state += (self.expected_epigenetic_state - phenotype.trait_actual_expected_diff * self.expected_epigenetic_state)
