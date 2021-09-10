@@ -13,11 +13,11 @@ class SiteGenerator:
 
     def simulate_site(self) -> Tuple[float, float, float]:
         # pick random initial methylation value
-        m_not_i = np.random.beta(.1, .1)
+        m_not_i = np.random.beta(.5, .5)
         # sample std deviation for the site
         std = np.random.uniform(0, self.site_deviation)
         pos = m_not_i < .6
-        if .6 >= m_not_i > .4:
+        if .55 >= m_not_i > .45:
             pos = np.random.rand() > .5
         if pos:
             m_target = np.random.uniform(m_not_i + self.max_delta, 1)
