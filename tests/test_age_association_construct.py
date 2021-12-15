@@ -1,5 +1,5 @@
 import numpy as np
-from EPMSim.Phenotype.AgeAssociations import construct_age_association, PhenotypeAgeAssociation
+from EPMSim.phenotype.AgeAssociations import construct_age_association, PhenotypeAgeAssociation
 
 default_phenotype = PhenotypeAgeAssociation(age_weight=1.0, age_exponent=0.0)
 

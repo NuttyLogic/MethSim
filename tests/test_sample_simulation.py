@@ -1,8 +1,8 @@
 import numpy as np
 
-from EPMSim.Phenotype.AgeAssociations import construct_age_association
-from EPMSim.Phenotype.BinaryPhenotype import BinaryPhenotype
-from EPMSim.Phenotype.ContinuousPhenotype import ContinuousPhenotype
+from EPMSim.phenotype.AgeAssociations import construct_age_association
+from EPMSim.phenotype.BinaryPhenotype import BinaryPhenotype
+from EPMSim.phenotype.ContinuousPhenotype import ContinuousPhenotype
 from EPMSim.Simulate.SimulateSamples import simulate_samples
 
 sqrt_age_assoc, sqrt_age_assoc_repr = construct_age_association(age_exponent=0.5, return_repr=True)

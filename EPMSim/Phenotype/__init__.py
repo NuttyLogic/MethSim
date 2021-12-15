@@ -1,4 +1,0 @@
-from EPMSim.Phenotype.BinaryPhenotype import BinaryPhenotype
-from EPMSim.Phenotype.ContinuousPhenotype import ContinuousPhenotype
-from EPMSim.Phenotype.AgeAssociations import construct_age_association
-from EPMSim.Phenotype.AgeAssociations import PhenotypeAgeAssociation

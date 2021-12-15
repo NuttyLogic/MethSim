@@ -2,8 +2,8 @@ from typing import Tuple
 
 import numpy as np
 
-from EPMSim.Phenotype.AgeAssociations import construct_age_association
-from EPMSim.Phenotype.PhenotypeBase import PhenotypeBase
+from EPMSim.phenotype.AgeAssociations import construct_age_association
+from EPMSim.phenotype.PhenotypeBase import PhenotypeBase
 
 default_age_association, default_age_repr = construct_age_association(return_repr=True)
 

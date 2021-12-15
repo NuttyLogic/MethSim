@@ -1,12 +1,12 @@
 from typing import Dict, List, Tuple
 import numpy as np
-from EPMSim.Phenotype.PhenotypeBase import PhenotypeBase
+from EPMSim.phenotype.PhenotypeBase import PhenotypeBase
 from EPMSim.Sample import Sample, SamplePhenotype
 
 
 def simulate_samples(min_age: float = 0.0, max_age: float = 100.0,
                      health_variation: float = 0.05, sample_count: int = 1000,
-                     epigenetic_state=lambda x: 10.0 * x**0.5, phenotypes: List[PhenotypeBase] = None):
+                     phenotypes: List[PhenotypeBase] = None):
     sim_samples = {}
     for sample in range(sample_count):
         age = np.random.uniform(min_age, max_age)

@@ -29,7 +29,3 @@ class PhenotypeBase:
     def get_phenotype(self, age: float, health: float) -> Tuple[int, float, float]:
         """Return phenotype status, phenotype value, expected phenotype value"""
         pass
-
-    def age_association(self, age: float, phenotype: float):
-        """Return phenotype age association"""
-        pass

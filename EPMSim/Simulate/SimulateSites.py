@@ -14,14 +14,15 @@ class GenerateSites:
                  phenotype_weights: Dict[str, float] = None,
                  noise_sites: int = 5000,
                  phenotype_site_generators: Dict[str, SiteGenerator] = None,
-                 noise_site_generators: Dict[str, SiteGenerator] = None):
+                 noise_site_generators: Dict[str, SiteGenerator] = None,
+                 site_deviations=(0.01, 0.025, 0.05, 0.075, 0.1)):
         self.site_conditions = site_conditions
         self.phenotype_weights = phenotype_weights if phenotype_weights else self.gen_phenotype_weights
         self.noise_sites = noise_sites
         self.pheno_site_generators = phenotype_site_generators if phenotype_site_generators else {}
         self.noise_site_generators = noise_site_generators if noise_site_generators else {}
         self.sites = None
-        self.get_site_generators()
+        self.get_site_generators(site_deviations=site_deviations)
 
     @property
     def gen_phenotype_weights(self):
@@ -32,15 +33,14 @@ class GenerateSites:
                     weights[pheno] = 1.0
         return weights
 
-    def get_site_generators(self):
-        deviations = [0.01, 0.025, 0.05]
+    def get_site_generators(self, site_deviations=None):
         if not self.pheno_site_generators:
-            for deviation in deviations:
+            for deviation in site_deviations:
                 self.pheno_site_generators[f'phenotype_{deviation}'] = SiteGenerator(site_deviation=deviation)
         if not self.noise_site_generators:
-            for deviation in deviations:
+            for deviation in site_deviations:
                 self.noise_site_generators[f'noise_{deviation}'] = SiteGenerator(max_delta=0.0,
-                                                                                 site_deviation=deviation + 0.05)
+                                                                                 site_deviation=deviation)
 
     def generate_sites(self):
         self.sites = self.get_condition_sites(self.site_conditions, self.pheno_site_generators)
@@ -55,7 +55,8 @@ class GenerateSites:
             print('must generate sites')
             return None
         for site in self.sites:
-            sample_values = sum(np.array([sample_phenotypes[:, phenotype_key[pheno]] * self.phenotype_weights[pheno] for
+            sample_values = sum(np.array([sample_phenotypes[:, phenotype_key[pheno]]
+                                          * self.phenotype_weights[pheno] for
                                           pheno in site['site_phenotypes']]))
             scaled_values = [x[0] for x in scaler.fit_transform(sample_values.reshape(-1, 1))]
             values, error = self.get_site_values(scaled_values, site)

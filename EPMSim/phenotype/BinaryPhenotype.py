@@ -2,8 +2,8 @@ from typing import Tuple
 
 import numpy as np
 
-from EPMSim.Phenotype.PhenotypeBase import PhenotypeBase
-from EPMSim.Phenotype.AgeAssociations import construct_age_association
+from EPMSim.phenotype.PhenotypeBase import PhenotypeBase
+from EPMSim.phenotype.AgeAssociations import construct_age_association
 
 default_age_association, default_age_repr = construct_age_association(return_repr=True)
 
@@ -52,7 +52,7 @@ class BinaryPhenotype(PhenotypeBase):
             * *age (float)*:
             * *health (float)*:
         Returns:
-            * *Phenotype Info (Tuple[int, float])*: 1 if sample has trait 1 else 0,
+            * *phenotype Info (Tuple[int, float])*: 1 if sample has trait 1 else 0,
                                                     phenotype value if sample has phenotype
             """
         has_trait = 0
