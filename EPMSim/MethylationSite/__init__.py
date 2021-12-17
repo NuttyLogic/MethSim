@@ -1,2 +1,0 @@
-from EPMSim.MethylationSite.SiteGenerator import SiteGenerator
-from EPMSim.MethylationSite.ValueGenerator import generate_sample_methylation
