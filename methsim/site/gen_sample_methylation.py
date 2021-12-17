@@ -31,7 +31,6 @@ class GenerateSampleMethylation:
                     self.sim_site_order[site] = (site, phenotype)
                 site += 1
                 meth, error = generate_sample_methylation(pheno_values, * self.methylation_sites[meth_site])
-                print(meth)
                 site_values.append(meth)
                 site_error.append(error)
         return np.array(site_values), np.array(site_values)

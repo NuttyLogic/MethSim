@@ -21,14 +21,9 @@ sim_continuous = gen_pheno_matrix(sim_samples, ['continuous'])
 
 site_gen = GenerateSampleMethylation()
 site_gen.generate_methylation_sites(deviation_low=0.00, deviation_high=0.00,
-                                    delta_low=0.1, delta_high=0.4, number_of_sites=500)
+                                    delta_low=0.1, delta_high=0.2, number_of_sites=500)
 
 meth_matrix, meth_error = site_gen.generate_sample_methylation(sim_samples, meth_phenotype_counts)
-print(meth_matrix.shape)
-
-
-print(pearson_correlation(sim_continuous, meth_matrix))
-
 
 
 def test_sample_setting():
