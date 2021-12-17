@@ -38,4 +38,4 @@ def generate_sample_methylation(states: np.ndarray, m_i: float,
     m_hat[m_hat < 0.0] = 0.0
     error[m_hat + error > 1.0] = 0.0
     error[m_hat + error < 0.0] = 0.0
-    return m_hat + error, error
+    return (m_hat + error).flatten(), error.flatten()
