@@ -14,6 +14,8 @@ class GenerateSampleMethylation:
 
     def generate_methylation_sites(self, deviation_low=0.0, deviation_high=0.1,
                                    delta_low=0.0, delta_high=0.5, number_of_sites=5000):
+        # reset site order if generating methylation sites
+        self.sim_site_order = {}
         self.methylation_sites = simulate_site_matrix(deviation_low, deviation_high,
                                                       delta_low, delta_high,
                                                       number_of_sites)
