@@ -1,0 +1,2 @@
+from methsim.site.site import generate_sample_methylation, simulate_site, simulate_site_matrix
+from methsim.site.gen_sample_methylation import GenerateSampleMethylation
