@@ -27,14 +27,18 @@ class GenerateSampleMethylation:
             pheno_values = self.get_phenotype_values(samples, phenotype)
             for count in range(sim_sites):
                 if site in self.sim_site_order:
-                    meth_site = self.sim_site_order[site][0]
+                    meth_site, meth_phenotype = self.sim_site_order[site]
+                    assert phenotype == meth_phenotype
                 else:
                     meth_site = np.random.randint(0, self.methylation_sites.shape[0])
-                    self.sim_site_order[site] = (site, phenotype)
-                site += 1
-                meth, error = generate_sample_methylation(pheno_values, * self.methylation_sites[meth_site])
+                    self.sim_site_order[site] = (meth_site, phenotype)
+                try:
+                    meth, error = generate_sample_methylation(pheno_values, *self.methylation_sites[meth_site])
+                except IndexError as e:
+                    print(meth_site)
                 site_values.append(meth)
                 site_error.append(error)
+                site += 1
         return np.array(site_values), np.array(site_values)
 
     def get_phenotype_values(self, samples, phenotype):
