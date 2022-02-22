@@ -1,4 +1,4 @@
-
+import numpy as np
 from methsim.phenotype import single_exp_assoc, continuous_normal
 from methsim.site import GenerateSampleMethylation
 from methsim.sample import gen_pheno_matrix, simulate_samples
@@ -16,8 +16,8 @@ sim_samples_2 = simulate_samples(min_age=0, max_age=100,
                                  phenotypes=phenotypes,
                                  sample_count=250)
 
-meth_phenotype_counts = {'continuous': 100,
-                         'noise': 100}
+meth_phenotype_counts = [[['continuous'], 100, np.ones(1)],
+                         ['noise', 100, np.ones(1)]]
 
 sim_continuous = gen_pheno_matrix(sim_samples, ['continuous'])
 

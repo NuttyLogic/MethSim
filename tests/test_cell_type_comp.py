@@ -15,8 +15,8 @@ sim_samples = simulate_samples(min_age=0, max_age=100,
                                phenotypes=phenotypes,
                                sample_count=50)
 
-meth_phenotype_counts = {'continuous': 100,
-                         'noise': 100}
+meth_phenotype_counts = [[['continuous'], 100, np.ones(1)],
+                         ['noise', 100, np.ones(1)]]
 
 sim_continuous = gen_pheno_matrix(sim_samples, ['continuous'])
 

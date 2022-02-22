@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='methsim',
-      version='0.0.1',
+      version='0.0.2',
       description='Utility for Simulating Epigenetic Aging Matrices',
       long_description=long_description,
       long_description_content_type="text/markdown",
