@@ -19,11 +19,12 @@ class GenerateSampleMethylation:
                                                       delta_low, delta_high,
                                                       number_of_sites)
 
-    def generate_sample_methylation(self, samples, sim_conditions: List[List[Union[List[str], int, np.ndarray]]]):
+    def generate_sample_methylation(self, samples, sim_conditions: List[List[Union[List[str], int, np.ndarray]]],
+                                    scale_min=None, scale_max=None):
         site_values, site_error = [], []
         site = 0
         for phenotypes, sim_sites, pheno_weights in sim_conditions:
-            pheno_values = self.get_phenotype_values(samples, phenotypes)
+            pheno_values = self.get_phenotype_values(samples, phenotypes, scale_min, scale_max)
             for count in range(sim_sites):
                 if site in self.sim_site_order:
                     meth_site, meth_phenotypes, coefs = self.sim_site_order[site]
@@ -41,7 +42,7 @@ class GenerateSampleMethylation:
                 site += 1
         return np.array(site_values), np.array(site_values)
 
-    def get_phenotype_values(self, samples, phenotypes, verbose=False):
+    def get_phenotype_values(self, samples, phenotypes, scale_min=None, scale_max=None, verbose=False):
         if not isinstance(phenotypes, list):
             values = gen_pheno_matrix(samples, [phenotypes], key='value')
         else:
@@ -54,14 +55,18 @@ class GenerateSampleMethylation:
                 values[:, pheno] = np.ones((len(samples)))
                 # save unit vector pos to avoid scaling
                 unit_vectors.append(pheno)
-        return self.scale_outputs(values, unit_vectors)
+        return self.scale_outputs(values, unit_vectors, scale_min, scale_max)
 
     @staticmethod
-    def scale_outputs(values, unit_vectors=None):
+    def scale_outputs(values, unit_vectors=None, scale_min=None, scale_max=None):
         s_values = values
         scaling_phenos = [x for x in range(values.shape[1]) if x not in unit_vectors]
         if not scaling_phenos:
             return values
         scaler = Scaler(X_min=np.zeros(len(scaling_phenos)), X_max=np.ones(len(scaling_phenos)))
+        if scale_min is not None:
+            scaler.X_min = scale_min
+        if scale_max is not None:
+            scaler.X_max = scale_max
         s_values[:, scaling_phenos] = scaler.fit_transform(s_values[:, scaling_phenos])
         return s_values

@@ -1,5 +1,8 @@
 import numpy as np
 
+class SimulationError(Exception):
+    """Error simulating data """
+    pass
 
 def simulate_site(site_deviation=0.0, delta=1.0, beta_params=(.3, .3)):
     # pick random initial methylation value
@@ -32,10 +35,18 @@ def simulate_site_matrix(deviation_low=0.001, deviation_high=0.1,
 
 def normalize_weights(state_weights=None):
     """Normalize weights for coef fitting"""
+    # adjust the weights relative to sum of weights
+    if np.sum(state_weights) == 0.0:
+        return state_weights
     adjusted_weights = np.array(state_weights) / np.sum(abs(np.array(state_weights)))
     adjusted_weights = np.nan_to_num(adjusted_weights, nan=0.0)
-    if np.sum(adjusted_weights) < 0.5:
-        return abs(adjusted_weights)
+    # add negative portion of weight to positve weights
+    if all(adjusted_weights < 0):
+        adjusted_weights = abs(adjusted_weights)
+    negative_weights_contribution = np.sum(abs(adjusted_weights[adjusted_weights < 0.0])) * 2
+    if negative_weights_contribution:
+        added_pos = negative_weights_contribution / np.sum(adjusted_weights > 0.0)
+        adjusted_weights[np.where(adjusted_weights > 0.0)] += added_pos
     return adjusted_weights
 
 
