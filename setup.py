@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='methsim',
-      version='0.0.1',
+      version='0.0.2',
       description='Utility for Simulating Epigenetic Aging Matrices',
       long_description=long_description,
       long_description_content_type="text/markdown",
@@ -27,7 +27,7 @@ setup(name='methsim',
                    'Programming Language :: Python :: 3.7',
                    'Programming Language :: Python :: 3.8'],
       platforms=["Linux", "Mac OS-X", "Unix"],
-      requires=['numpy', 'sklearn'],
+      requires=['numpy'],
       install_requires=['numpy>=1.16.3', 'setuptools>=46.0.0'],
       python_requires='>=3.6',
       test_suite='tests',
